@@ -25,8 +25,12 @@ namespace WebMVC.Controllers
         }
 
         public IActionResult Login()
-        {
-            return View();
+        {            
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View("Index", "Home");
         }
         [HttpPost]
         public async Task<IActionResult> Login(User obj)
@@ -47,7 +51,7 @@ namespace WebMVC.Controllers
                 return View();
             }
             await Authenticate(obj.Name);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -74,7 +78,7 @@ namespace WebMVC.Controllers
             _db.User.Add(obj);
             _db.SaveChanges();
             await Authenticate(obj.Name);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
 
         }
 

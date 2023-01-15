@@ -22,6 +22,10 @@ namespace WebMVC.Controllers
 
         public async Task<IActionResult> Login(Admin obj)
         {
+            if(User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (!ModelState.IsValid)
             {
                 return View();
@@ -38,7 +42,7 @@ namespace WebMVC.Controllers
                 return View();
             }
             await Authenticate(obj.Login);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Treners(Admin obj)

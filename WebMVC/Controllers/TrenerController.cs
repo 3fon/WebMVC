@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebMVC.Data;
 using WebMVC.Helpers;
 using WebMVC.Models;
@@ -18,6 +19,7 @@ namespace WebMVC.Controllers
             IEnumerable<Trener> TrenerList = _db.Trener;
             return View(TrenerList);
         }
+
         [Authorize]
         public IActionResult Add()
         {
@@ -36,6 +38,20 @@ namespace WebMVC.Controllers
             _db.Trener.Add(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
+
+        }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+            
+            var trener = await _db.Trener.FirstOrDefaultAsync(trener => trener.Id == id);
+            if(trener == null) {
+                return RedirectToAction("Index", "Home");
+            }
+            _db.Remove(trener);
+            _db.SaveChanges();
+            return RedirectToAction("Index", "Home");
 
         }
     }

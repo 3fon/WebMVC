@@ -1,8 +1,10 @@
-﻿@{
+﻿@model int;
+
+@{
     ViewData["Title"] = "ProФитнес";
 }
 
 <div class="text-center">
     <h1 style="margin-top: 200px" class="display-4">Добро пожаловать на сайт сети тренажерных залов "ProФитнес"</h1>
-    <h2>Сейчас в зале находятся: </h2>    
+    <h2>Тренеров в зале: <b>@Model</b></h2>    
 </div>
