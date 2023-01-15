@@ -1,0 +1,13 @@
+﻿@model IEnumerable<User>
+@{
+    ViewData["Title"] = "Login";
+}
+<h1>Список Тренеров</h1>
+<a class="btn btn-success" asp-controller="Admin" asp-action="TrenerAdd">ADD</a>
+@foreach (var obj in Model)
+{
+    @if(obj.Role == "Trener")
+    {
+        <h2>@obj.Name ------ @obj.Instrument</h2>
+    }
+}

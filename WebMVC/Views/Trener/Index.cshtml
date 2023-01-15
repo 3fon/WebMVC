@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Trener>
+@{
+    ViewData["Title"] = "Login";
+}
+<h1>Список Тренеров</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    <a class="btn btn-success" asp-controller="Trener" asp-action="Add">ADD</a>
+}
+
+<table class="table">
+    <thead>
+        <tr>            
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>            
+            <th scope="col">Номер телефона</th>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>                
+                <td>@obj.Name</td>
+                <td>@obj.SecondName</td>
+                <td>@obj.Phone</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

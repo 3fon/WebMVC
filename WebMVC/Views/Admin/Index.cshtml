@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "ProФитнес";
+}
+
+<div class="text-center">
+    
+    <div>
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <h1 style="margin-top: 200px" class="display-4">Данная страница создана для администрации компании "ProФитнес"</h1>
+            <h2>Произведите вход на сайт:</h2>
+            <a class="btn btn-primary" asp-controller="Admin" asp-action="Login">LOGIN</a>            
+        }
+
+    </div>
+</div>

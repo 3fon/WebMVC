@@ -1,0 +1,9 @@
+﻿@model IEnumerable<User>
+@{
+    ViewData["Title"] = "Indexu";
+}
+<h1>Useri</h1>
+
+@foreach(var obj in Model){
+    <h2>@obj.Name ------ @obj.Password</h2>
+}
